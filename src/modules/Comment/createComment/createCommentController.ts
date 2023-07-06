@@ -3,11 +3,12 @@ import { CreateCommentUseCase } from "./createCommentUseCase";
 
 export class CreateCommentController {
   async handle(request: Request, response: Response) {
-    const { user_id, content, post_id } = request.body;
+    const { content, post_id } = request.body;
+    const { id_user } = request;
 
     const createCommentUseCase = new CreateCommentUseCase();
     const result = await createCommentUseCase.execute({
-      user_id, 
+      user_id: id_user, 
       content,
       post_id
     });

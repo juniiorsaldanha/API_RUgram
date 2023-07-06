@@ -9,7 +9,7 @@ export class ListPostUseCase {
       include: {
         user: {
           select: {
-            name: true,
+            username: true,
             urlAvatar: true,
             admin: true,
           }
@@ -24,7 +24,7 @@ export class ListPostUseCase {
             created_at: true,
             user: {
               select: {
-                name: true,
+                username: true,
                 urlAvatar: true,
                 admin: true
               }

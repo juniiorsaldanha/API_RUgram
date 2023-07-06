@@ -11,14 +11,15 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  urlAvatar String
-  admin     Boolean   @default(false)
-  post      Post[]
-  Comment   Comment[]
-  Like      Like[]
+  id            String    @id @default(uuid())
+  username      String
+  password_hash String
+  email         String    @unique
+  urlAvatar     String
+  admin         Boolean   @default(false)
+  post          Post[]
+  Comment       Comment[]
+  Like          Like[]
 
   @@map("users")
 }
@@ -57,4 +58,22 @@ model Comment {
   created_at DateTime  @default(now())
 
   @@map("comments")
+}
+
+model Menu {
+  id      String   @id @default(uuid())
+  title   String
+  options Option[]
+
+  @@map("menu")
+}
+
+model Option {
+  id     String @id @default(uuid())
+  text   String
+  votes  Int    @default(0)
+  menuId String
+  menu   Menu   @relation(fields: [menuId], references: [id])
+
+  @@map("options")
 }
