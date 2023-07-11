@@ -10,9 +10,15 @@ export class FindPollUseCase {
       where: {
         id: menu_id,
       },
-      include: {
-        options: true,
-      },
+      select: {
+        id: true,
+        title: true,
+        options: {
+          orderBy: {
+            text: "asc"
+          }
+        }
+      }
     });
 
     return poll
