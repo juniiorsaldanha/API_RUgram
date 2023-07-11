@@ -4,7 +4,7 @@ export class ListPostUseCase {
   async execute() {
     const posts = await prisma.post.findMany({
       orderBy: {
-
+        created_at: "desc"
       },
       include: {
         user: {
